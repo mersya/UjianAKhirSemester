@@ -1,5 +1,5 @@
 <?php
- 
+ include 'config.php';
   // Menangkap isi variabel dari file yang telah kita isi pada form.php
   $wil = $_POST['wil'];
   $nama = $_POST['nama'];
@@ -9,17 +9,9 @@
   $sem = $_POST['sem'];
   $men = $_POST['men'];
  
-  // Format data yang akandiparsing
-  $data = "\n $wil|$nama|$nim|$pos|$raw|$sem|$men";
- 
-  // Buka file mhs.txt, kemudian tuliskan isi variabel di atas kedalam mhs.txt
-  $fh = fopen("data.txt", "a");
-  fwrite($fh, $data);
- 
-  // Tutup file data.txt
-  fclose($fh);
- 
-  // Keterangan bila data berhasil di input
-  print "Data Telah Tersimpan.</br><a href='index.php'>Kembalike Index >></a>";
+ // query SQL untuk insert data
+mysql_query("INSERT INTO tb_data VALUES('','$wil','$nama','$nim','$pos','$raw','$sem','$men')");
+// mengalihkan ke halaman home.php
+header("location:home.php?pesan=input");
  
 ?>
